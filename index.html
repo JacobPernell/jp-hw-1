@@ -38,9 +38,11 @@
 				if (q1 == "Blue" || q1 == "blue") {
 					window.alert("Yes! That is my favorite color.");
 					score++;
+					document.write("Your score: " + score);
 				} else {
 					window.alert("Sorry brobro, try again.");
 					q1TriesLeft--;
+					document.write("Q1 tries remaining: " + q1TriesLeft);
 				}
 			} else {
 				window.alert("Sorry, you are out of tries for this question.");
