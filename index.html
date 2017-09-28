@@ -7,44 +7,53 @@
 	<h1>HW1: Guessing Game</h1>
 	<div class="questions">
 		<!-- Question 1 -->
-		<p>What is my favorite color?</p>
-		<button onclick="q1True()">Blue</button>
-		<button onclick="qFalse()">Green</button>
-		<button onclick="qFalse()">Pink</button>
+		<button onclick="question1()">Question 1</button>
 	</div>
 	<div class="questions">
 		<!-- Question 2 -->
-		<p>What was the name of my leopard gecko?</p>
-		<button onclick="qFalse()">Slippy</button>
-		<button onclick="qFalse()">Carl</button>
-		<button onclick="q2True()">Tiki</button>
+		<p>How many years have I lived in Seattle (rounded to whole number)?</p>
 	</div>
 	<div class="questions">
 		<!-- Question 3 -->
-		<p>What is my favorite Pokémon?</p>
-		<button onclick="qFalse()">Pikachu</button>
-		<button onclick="q3True()">Umbreon</button>
-		<button onclick="qFalse()">Scyther</button>
+		<p>What is the name of the dog I live with?</p>
 	</div>
 
 	<!-- JS: alert functions -->
 	<script type="text/javascript">
-		// Question ALL - False
-		function qFalse(){
-			window.alert("No bro bro, try again.");
+		// Correct question ansewrs
+		var q1Answer = "Blue";
+		var q2Answer = 2;
+		var q3Answer = "Lola";
+
+		var q1TriesLeft = 3;
+		var q2TriesLeft = 3;
+		var q3TriesLeft = 3;
+
+		var score = 0;
+
+		// Question 1 - once I get this one down I will copy/paste to work for the other ?'s
+		function question1(){
+			var q1 = prompt("What is my favorite color?");
+			if (q1TriesLeft > 0){
+				if (q1 == "Blue" || q1 == "blue") {
+					window.alert("Yes! That is my favorite color.");
+					score++;
+				} else {
+					window.alert("Sorry brobro, try again.");
+					q1TriesLeft--;
+				}
+			} else {
+				window.alert("Sorry, you are out of tries for this question.");
+			}
 		}
-		// Question 1 - True
-		function q1True(){
-			window.alert("Yes! That is my favorite color.");
-		}
-		// Question 2 - True
-		function q2True(){
+		/*// Question 2 - True
+		function question2(){
 			window.alert("Yes! That was the name of my leopard gecko.");
 		}
 		// Question 3 - True
-		function q3True(){
+		function question3(){
 			window.alert("Yes! That is my favorite Pokémon.");
-		}
+		}*/
 	</script>
 </body>
 </html>
