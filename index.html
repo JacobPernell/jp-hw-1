@@ -1,9 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>HW 1</title>
 </head>
 <body>
+	<h1>HW1: Guessing Game</h1>
+	<div class="questions">
+		<!-- Question 1 -->
+		<p>What is my favorite color?</p>
+		<button onclick="q1True()">Blue</button>
+		<button onclick="qFalse()">Green</button>
+		<button onclick="qFalse()">Pink</button>
+	</div>
+	<div class="questions">
+		<!-- Question 2 -->
+		<p>What was the name of my leopard gecko?</p>
+		<button onclick="qFalse()">Slippy</button>
+		<button onclick="qFalse()">Carl</button>
+		<button onclick="q2True()">Tiki</button>
+	</div>
+	<div class="questions">
+		<!-- Question 3 -->
+		<p>What is my favorite Pokémon?</p>
+		<button onclick="qFalse()">Pikachu</button>
+		<button onclick="q3True()">Umbreon</button>
+		<button onclick="qFalse()">Scyther</button>
+	</div>
 
+	<!-- JS: alert functions -->
+	<script type="text/javascript">
+		// Question ALL - False
+		function qFalse(){
+			window.alert("No bro bro, try again.");
+		}
+		// Question 1 - True
+		function q1True(){
+			window.alert("Yes! That is my favorite color.");
+		}
+		// Question 2 - True
+		function q2True(){
+			window.alert("Yes! That was the name of my leopard gecko.");
+		}
+		// Question 3 - True
+		function q3True(){
+			window.alert("Yes! That is my favorite Pokémon.");
+		}
+	</script>
 </body>
 </html>
