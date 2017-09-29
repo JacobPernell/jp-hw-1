@@ -8,17 +8,26 @@
 	<h1>HW1: Guessing Game</h1>
 	<div class="questions">
 		<!-- Question 1 -->
-		<button onclick="question1()">Question 1</button>
+		<button id="q1Button" onclick="question1()">Question 1</button>
+		<p id="q1Outcome"></p>
 		<p id="q1TriesID"></p>
+		<hr>
 	</div>
 	<div class="questions">
 		<!-- Question 2 -->
-		<p>How many years have I lived in Seattle (rounded to whole number)?</p>
+		<button id="q2Button" onclick="question2()">Question 2</button>
+		<p id="q2Outcome"></p>
+		<p id="q2TriesID"></p>
+		<hr>
 	</div>
 	<div class="questions">
 		<!-- Question 3 -->
-		<p>What is the name of the dog I live with?</p>
+		<button id="q3Button" onclick="question3()">Question 3</button>
+		<p id="q3Outcome"></p>
+		<p id="q3TriesID"></p>
+		<hr>
 	</div>
+
 	<div><p id="scoreID"></p></div>
 
 	<!-- JS: alert functions -->
@@ -36,42 +45,116 @@
 
 		// Set the Q tries remaining and score upon page load
 		function scoreSetup(){
-			document.getElementByID("q1TriesID").innerHTML = "Q1 tries remaining: ";
-			//document.getElementByID("q1TriesID").innerHTML = "Q1 tries remaining: " + q1TriesLeft;
-			//document.getElementByID("q2TriesID").innerHTML = "Q1 tries remaining: " + q1TriesLeft;
-			//document.getElementByID("q3TriesID").innerHTML = "Q1 tries remaining: " + q1TriesLeft;
-			document.getElementByID("scoreID").innerHTML = "Your score is: " + score;
+			document.getElementById("q1TriesID").innerHTML = "Q1 tries remaining: " + q1TriesLeft;
+			document.getElementById("q2TriesID").innerHTML = "Q2 tries remaining: " + q2TriesLeft;
+			document.getElementById("q3TriesID").innerHTML = "Q3 tries remaining: " + q3TriesLeft;
+			document.getElementById("scoreID").innerHTML = "Your score is: " + score;
 		}
 
-		// Question 1 - once I get this one down I will copy/paste to work for the other ?'s
+		// Question 1
 		function question1(){
-			// Toss up prompt box asking question
-			var q1 = prompt("What is my favorite color?");
+			// If you still have remaining tries...
 			if (q1TriesLeft > 0){
-				// If the answer is correct, score++
+				// Toss up prompt box asking question
+				var q1 = prompt("What is my favorite color?");
+				// If the answer is correct, score++ and disable the button
 				if (q1 == "Blue" || q1 == "blue") {
 					window.alert("Yes! That is my favorite color.");
 					score++;
-					document.getElementByID("scoreID").innerHTML = "Your score is: " + score;
-				} else {
-				// If answer is wrong
-					window.alert("Sorry brobro, try again.");
 					q1TriesLeft--;
-					document.getElementByID("q1TriesID").innerHTML = "Q1 tries remaining: " + q1TriesLeft;
+					document.getElementById("q1Button").disabled = true;
+					document.getElementById("q1Outcome").innerHTML = "Correct! You get 1 point.";
+					document.getElementById("q1TriesID").innerHTML = "Q1 tries remaining: " + q1TriesLeft;
+					document.getElementById("scoreID").innerHTML = "Your score is: " + score;
+				} else {
+					if (q1TriesLeft > 1){
+						// If answer is wrong but it's not your last try
+						window.alert("Sorry brobro, try again.");
+						q1TriesLeft--;
+						document.getElementById("q1TriesID").innerHTML = "Q1 tries remaining: " + q1TriesLeft;
+					} else {
+						// If it's your last try and you fail, send user different alert message
+						q1TriesLeft--;
+						document.getElementById("q1TriesID").innerHTML = "Q1 tries remaining: " + q1TriesLeft;
+						window.alert("Out of tries :(");
+						document.getElementById("q1Outcome").innerHTML = "Incorrect. Sorry brobro, no points awarded for this question.";
+						document.getElementById("q1Button").disabled = true;
+					}
 				}
-			} else {
-				window.alert("Sorry, you are out of tries for this question.");
 			}
 		}
 
-		/*// Question 2 - True
+		// Question 2
 		function question2(){
-			window.alert("Yes! That was the name of my leopard gecko.");
+			// If you still have remaining tries...
+			if (q2TriesLeft > 0){
+				// Toss up prompt box asking question
+				var q2 = prompt("How many years have I lived in Seattle (rounded to whole number)?");
+				// If the answer is correct, score++ and disable the button
+				if (q2 == 2) {
+					window.alert("Yes! I have lived in Seattle for 2 years.");
+					score++;
+					q2TriesLeft--;
+					document.getElementById("q2Button").disabled = true;
+					document.getElementById("q2Outcome").innerHTML = "Correct! You get 1 point.";
+					document.getElementById("q2TriesID").innerHTML = "Q2 tries remaining: " + q2TriesLeft;
+					document.getElementById("scoreID").innerHTML = "Your score is: " + score;
+				} else {
+					if (q2TriesLeft > 1){
+						// If answer is wrong but it's not your last try
+						window.alert("Sorry brobro, try again.");
+						q2TriesLeft--;
+						document.getElementById("q2TriesID").innerHTML = "Q2 tries remaining: " + q2TriesLeft;
+					} else {
+						// If it's your last try and you fail, send user different alert message
+						q2TriesLeft--;
+						document.getElementById("q2TriesID").innerHTML = "Q2 tries remaining: " + q2TriesLeft;
+						window.alert("Out of tries :(");
+						document.getElementById("q2Outcome").innerHTML = "Incorrect. Sorry brobro, no points awarded for this question.";
+						document.getElementById("q2Button").disabled = true;
+					}
+				}
+			}
 		}
-		// Question 3 - True
+
+		// Question 3
 		function question3(){
-			window.alert("Yes! That is my favorite Pokémon.");
-		}*/
+			// If you still have remaining tries...
+			if (q3TriesLeft > 0){
+				// Toss up prompt box asking question
+				var q3 = prompt("What is the name of the dog I live with?");
+				// If the answer is correct, score++ and disable the button
+				if (q3 == "Lola" || q3 == "lola") {
+					window.alert("Yes! I live with Lola.");
+					score++;
+					q3TriesLeft--;
+					document.getElementById("q3Button").disabled = true;
+					document.getElementById("q3Outcome").innerHTML = "Correct! You get 1 point.";
+					document.getElementById("q3TriesID").innerHTML = "Q3 tries remaining: " + q3TriesLeft;
+					document.getElementById("scoreID").innerHTML = "Your score is: " + score;
+				} else {
+					if (q3TriesLeft > 1){
+						// If answer is wrong but it's not your last try
+						window.alert("Sorry brobro, try again.");
+						q3TriesLeft--;
+						document.getElementById("q3TriesID").innerHTML = "Q3 tries remaining: " + q3TriesLeft;
+					} else {
+						// If it's your last try and you fail, send user different alert message
+						q3TriesLeft--;
+						document.getElementById("q3TriesID").innerHTML = "Q3 tries remaining: " + q3TriesLeft;
+						window.alert("Out of tries :(");
+						document.getElementById("q3Outcome").innerHTML = "Incorrect. Sorry brobro, no points awarded for this question.";
+						document.getElementById("q3Button").disabled = true;
+					}
+				}
+			}
+		}
+
+		// So I wanted to implement something like this but I'm not entirely sure what the best way is to implement it. Is there something equivalent to a game loop/update function like with C#/Unity that's always running? I was going to trigger this function to go if all 3 buttons were disabled.
+		function gameOver(){
+			window.alert("Game over. Thanks for playing! Your final score is: " + score);
+		}
+
 	</script>
 </body>
 </html>
