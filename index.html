@@ -3,11 +3,13 @@
 <head>
     <title>HW 1</title>
 </head>
-<body>
+<!-- Run the scoreSetup function when the page first loads -->
+<body onload="scoreSetup();">
 	<h1>HW1: Guessing Game</h1>
 	<div class="questions">
 		<!-- Question 1 -->
 		<button onclick="question1()">Question 1</button>
+		<p id="q1TriesID"></p>
 	</div>
 	<div class="questions">
 		<!-- Question 2 -->
@@ -17,6 +19,7 @@
 		<!-- Question 3 -->
 		<p>What is the name of the dog I live with?</p>
 	</div>
+	<div><p id="scoreID"></p></div>
 
 	<!-- JS: alert functions -->
 	<script type="text/javascript">
@@ -31,23 +34,36 @@
 
 		var score = 0;
 
+		// Set the Q tries remaining and score upon page load
+		function scoreSetup(){
+			document.getElementByID("q1TriesID").innerHTML = "Q1 tries remaining: ";
+			//document.getElementByID("q1TriesID").innerHTML = "Q1 tries remaining: " + q1TriesLeft;
+			//document.getElementByID("q2TriesID").innerHTML = "Q1 tries remaining: " + q1TriesLeft;
+			//document.getElementByID("q3TriesID").innerHTML = "Q1 tries remaining: " + q1TriesLeft;
+			document.getElementByID("scoreID").innerHTML = "Your score is: " + score;
+		}
+
 		// Question 1 - once I get this one down I will copy/paste to work for the other ?'s
 		function question1(){
+			// Toss up prompt box asking question
 			var q1 = prompt("What is my favorite color?");
 			if (q1TriesLeft > 0){
+				// If the answer is correct, score++
 				if (q1 == "Blue" || q1 == "blue") {
 					window.alert("Yes! That is my favorite color.");
 					score++;
-					document.write("Your score: " + score);
+					document.getElementByID("scoreID").innerHTML = "Your score is: " + score;
 				} else {
+				// If answer is wrong
 					window.alert("Sorry brobro, try again.");
 					q1TriesLeft--;
-					document.write("Q1 tries remaining: " + q1TriesLeft);
+					document.getElementByID("q1TriesID").innerHTML = "Q1 tries remaining: " + q1TriesLeft;
 				}
 			} else {
 				window.alert("Sorry, you are out of tries for this question.");
 			}
 		}
+
 		/*// Question 2 - True
 		function question2(){
 			window.alert("Yes! That was the name of my leopard gecko.");
